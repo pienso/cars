@@ -6,7 +6,7 @@ var morgan = require('morgan')
 var operations = require('./controllers/operations')
 
 app.use(morgan('dev'))
-
+app.disable('x-powered-by')
 
 //console.log('process.env: ' + JSON.stringify(process.env, null, 2));
 
