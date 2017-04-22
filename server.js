@@ -1,7 +1,11 @@
 var express = require('express');
 var app = express();
-var mongoose = require('./config/db');
 var morgan = require('morgan')
+
+if (process.env.NODE_ENV == 'test')
+    var config = require('./config/test.json')
+else
+    var config = require('./config/dev.json')
 
 var operations = require('./controllers/operations')
 
@@ -45,8 +49,9 @@ app.get('/:brand/:model/:submodel', function(req, res) {
     })
 })
 
-app.listen(3000)
+app.listen(config.port)
 
 console.log('Server running at http://localhost:3000/')
 
+module.exports = app
 
